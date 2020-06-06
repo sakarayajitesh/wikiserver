@@ -21,4 +21,4 @@ class Summary(APIView):
                     print(e)
             return Response(responseList)
         except Exception as e:
-            print(e)
+            return Response(str(e), 500)
