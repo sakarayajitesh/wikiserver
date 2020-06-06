@@ -11,6 +11,7 @@ class Summary(APIView):
     def get(self, request):
         try:
             textList = request.headers['textlist']
+            print(textList)
             responseList = []
             for text in json.loads(textList):
                 print("requesting = ", text)
@@ -21,4 +22,5 @@ class Summary(APIView):
                     print(e)
             return Response(responseList)
         except Exception as e:
+            print(str(e))
             return Response(str(e), 500)
