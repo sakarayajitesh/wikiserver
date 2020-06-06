@@ -11,12 +11,12 @@ class Summary(APIView):
     def get(self, request):
         try:
             textList = request.headers['textlist']
-            print(textList)
+            print(textList.strip('][').split(","))
             responseList = []
-            for text in json.loads(textList):
+            for text in list(textList.strip('][').split(",")):
                 print("requesting = ", text)
                 try:
-                    response = wikipedia.summary(text, sentences=3)
+                    response = wikipedia.summary(str(text), sentences=3)
                     responseList.append({"text": text, "result": response})
                 except Exception as e:
                     print(e)
